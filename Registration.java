@@ -37,7 +37,7 @@ public class Registration {
         
         int outputCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post Data : " + myJsonData);
+        System.out.println("Post Info: " + myJsonData);
         System.out.println("Output Code: " + outputCode);
         
         StringBuffer outputData;
