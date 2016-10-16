@@ -57,6 +57,9 @@ public class Registration {
         
         Prefix step4 = new Prefix();
         step4.request();
+         
+        DatingGame step5 = new DatingGame();
+        step5.request();
     }         
 }
 
