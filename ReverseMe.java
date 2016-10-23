@@ -27,11 +27,10 @@ public class ReverseMe {
                 .post(body)
                 .build();
             
-           String newString;
+        String newString;
            
-        try (Response response = client.newCall(newRequest).execute()){
-            newString = response.body().string();
-        }
+        Response response = client.newCall(newRequest).execute()
+        newString = response.body().string();
         System.out.println("The given string is: " + newString);
         return newString;
     }
@@ -64,9 +63,9 @@ public class ReverseMe {
             .post(body)
             .build();
             
-            try (Response response = client.newCall(newRequest).execute()) {
-                System.out.print(response.body().string());
-            }
+         Response response = client.newCall(newRequest).execute()
+         System.out.print(response.body().string());
+         }
     }
     
     // Request Call for main method in Registration.java
@@ -77,7 +76,7 @@ public class ReverseMe {
             if (newString != null) {
             String reversedString = reverseString(newString);
             sendStringBack(reversedString);
-        }
+            }
         System.out.println("\nSending 'POST' request to URL : " + POST_ENDPOINT);
         System.out.println("Posting: " + reversedString);
     } 
