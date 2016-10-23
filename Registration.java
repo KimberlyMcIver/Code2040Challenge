@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.io.InputStreamReader;
 import java.net.URL;
-     
-// STEP 1: REGISTRATION
 
 public class Registration {
     
     private final String tokenValue = "aa8874426685ac9674ccf75518f60ec0";
+    
+    // Initial connection to API's retrievel endpoint 
      
     private void request() throws Exception {
     
@@ -44,6 +44,8 @@ public class Registration {
         System.out.println(outputData.toString());
     }
     
+    // Main method that preforms all initial calls 
+     
     public static void main(String[] args) throws Exception {
     
         Registration step1 = new Registration();
@@ -52,7 +54,7 @@ public class Registration {
         ReverseMe step2 = new ReverseMe();
         step2.request();
         
-        NeedleInHaystack1 step3 = new NeedleInHaystack1();
+        NeedleInHaystack step3 = new NeedleInHaystack();
         step3.request();
         
         Prefix step4 = new Prefix();
@@ -62,4 +64,3 @@ public class Registration {
         step5.request();
     }         
 }
-
