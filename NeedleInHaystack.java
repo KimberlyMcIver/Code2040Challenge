@@ -12,7 +12,7 @@ public class NeedleInHaystack {
     
     // Receive dictionary from the API's retrieval endpoint
     
-    private static String receiveInfo() throws Exception {
+    private static String receiveInfo() throws IOException {
     
         OkHttpClient client = new OkHttpClient();
         
@@ -24,16 +24,15 @@ public class NeedleInHaystack {
                 .url(POST_ENDPOINT)
                 .post(body)
                 .build();
-        try (Response response = client.newCall(newRequest).execute()){
-            return response.body().string();
-        }  
+        
+        Response response = client.newCall(newRequest).execute())
+        return response.body().string();  
     }
     
     // Find the needle position in the Haystack array
     
-    private static int findNeedle(String collection) throws Exception {
+    private static int findNeedle(String collection) throws JSONException, IOException {
         
-        try{
             int needleIndex = -1;
             JSONObject JsonObj = new JSONObject(collection);
             String needle = JsonObj.getString("needle");
@@ -45,39 +44,33 @@ public class NeedleInHaystack {
                     needleIndex = i;
                     }
                 }
-            return needleIndex;
-            
-        } catch (JSONException e) {
-            return -1;
-        } 
+            return needleIndex; 
     }
 
     // Send the needle position to the API's validation endpoint
     
-    private static void sendNeedleIndexBack(int needleIndex) throws Exception {
+    private static void sendNeedleIndexBack(int needleIndex) throws IOException {
         String needle = ((Integer) needleIndex).toString();
         OkHttpClient client = new OkHttpClient();
         
         RequestBody body = new FormBody.Builder()
-            .add("token", TOKEN_VALUE)
-            .add("needle", needle)
-            .build();
+                .add("token", TOKEN_VALUE)
+                .add("needle", needle)
+                .build();
             
         Request newRequest = new Request.Builder()
-                    .url(RETURN_ENDPOINT)
-                    .post(body)
-                    .build();
+                .url(RETURN_ENDPOINT)
+                .post(body)
+                .build();
             
-            try(Response response = client.newCall(newRequest).execute()) {
-                System.out.print(response.body().string());
-            
-            }catch (Exception e){
-            }
+        Response response = client.newCall(newRequest).execute() 
+        System.out.print(response.body().string());      
     }
     
     // Request call for main method in Registration.java
 
-    public void request() throws Exception {
+    public void request() throws JSONException, IOException {
+        
         String collection = receiveInfo();
         int needleIndex = findNeedle(collection);
             if (needleIndex != -1) { 
