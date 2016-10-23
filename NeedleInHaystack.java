@@ -50,7 +50,8 @@ public class NeedleInHaystack {
     // Send the needle position to the API's validation endpoint
     
     private static void sendNeedleIndexBack(int needleIndex) throws IOException {
-        String needle = ((Integer) needleIndex).toString();
+        
+        String needle = ((Integer)needleIndex).toString();
         OkHttpClient client = new OkHttpClient();
         
         RequestBody body = new FormBody.Builder()
