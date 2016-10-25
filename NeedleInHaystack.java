@@ -40,8 +40,8 @@ public class NeedleInHaystack {
 
                 for(int i = 0; i < givenHaystack.length(); i++){
                     if(givenHaystack.getString(i).contains(needle)){
-                    System.out.println("Found needle at index " + i);
-                    needleIndex = i;
+                        System.out.println("Found needle at index " + i);
+                        needleIndex = i;
                     }
                 }
             return needleIndex; 
