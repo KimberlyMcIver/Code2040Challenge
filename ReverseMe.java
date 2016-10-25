@@ -38,13 +38,10 @@ public class ReverseMe {
      // Reverse the given string from the API
      
     private String reverseString(String newString) throws IOException {
-    
-        for(int i = newString.length() - 1; i >= 0; i--){
-            char letter = newString.charAt(i);
-            reversedString = reversedString + letter;
-        }
-        System.out.println("The reversed string is: " + reversedString);
-        return reversedString; 
+  
+        String reversedString1 = new StringBuilder(newString).reverse().toString();
+        System.out.println("The reversed string is: " + reversedString1);
+        return reversedString1;
     }  
    
     // Send the newly reversed string back to the API's validation endpoint.
@@ -55,7 +52,7 @@ public class ReverseMe {
         
         RequestBody body = new FormBody.Builder()
             .add("token", TOKEN_VALUE)
-            .add("reversedSting", reversedString)
+            .add("string", reversedString)
             .build();
             
         Request newRequest = new Request.Builder()
@@ -76,8 +73,8 @@ public class ReverseMe {
             if (newString != null) {
                String reversedString = reverseString(newString);
                sendStringBack(reversedString);
+               System.out.println("\nSending 'POST' request to URL : " + POST_ENDPOINT);
+               System.out.println("Posting: " + reversedString);
             }
-        System.out.println("\nSending 'POST' request to URL : " + POST_ENDPOINT);
-        System.out.println("Posting: " + reversedString);
     } 
 }
