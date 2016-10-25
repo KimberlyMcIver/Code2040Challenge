@@ -74,8 +74,8 @@ public class ReverseMe {
         
         String newString = receiveInfo();
             if (newString != null) {
-            String reversedString = reverseString(newString);
-            sendStringBack(reversedString);
+               String reversedString = reverseString(newString);
+               sendStringBack(reversedString);
             }
         System.out.println("\nSending 'POST' request to URL : " + POST_ENDPOINT);
         System.out.println("Posting: " + reversedString);
