@@ -40,21 +40,16 @@ public class Prefix {
             JSONObject jsonObj = new JSONObject(strings);
             String prefix = jsonObj.getString("prefix");
             JSONArray jsonArr = jsonObj.getJSONArray("array");
-            String stringWOPrefix = "";
+            JSONArray jsonArr1 = new JSONArray();
         
                 for(int i = 0; i < jsonArr.length(); i++) {
                     String currentString = jsonArr.getString(i);
                     
                     if(!currentString.startsWith(prefix)) {
-                        stringWOPrefix = stringWOPrefix + currentString;          
+                        jsonArr1.put(currentString);          
                     }
                 }
-            System.out.println(stringWOPrefix);
-            String response = receiveInfo();
-            JSONObject jsonObject = new JSONObject(response);
-            String[] strings1 = JSONObject.getJSONArray(jsonObject);
-            JSONArray jsonArray1 = jsonObject.toJSONArray(new JSONArray(strings1));
-            return jsonArray1;
+            return jsonArr1;
     }        
     
     // Sends new array back to API's validation endpoint
@@ -92,11 +87,11 @@ public class Prefix {
     public void request() throws JSONException, IOException {
         
         String json = receiveInfo();
-        JSONArray jsonObj1 = findStringsWOPrefix(json);
-            if (jsonObj1 != null) {
-                sendNewArrayBack(jsonObj1);
+        JSONArray jsonArr1 = findStringsWOPrefix(json);
+            if (jsonArr1 != null) {
+                sendNewArrayBack(jsonArr1);
             }
         System.out.println("\nSending 'POST' request to URL : " + POST_ENDPOINT);
-        System.out.println("Posting: " + jsonObj1);
+        System.out.println("Posting: " + jsonArr1);
     }
 }
